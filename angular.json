@@ -121,6 +121,10 @@
               "devServerTarget": "bet-strategys:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
