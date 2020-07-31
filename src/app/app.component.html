@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bet Strategys</title>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <label for="initialBetElement">Initial bet</label>
+          <input type="text" name="initialBetElement" id="initialBetElement" class="form-control" mask="0*.00" #initialBetElement>
+        </div>
+        <div class="col-md-6">
+          <label for="multiplierElement">Multiplier</label>
+          <input type="text" name="multiplierElement" id="multiplierElement" class="form-control" mask="0*" #multiplierElement>
+        </div>
+        <div class="col-md-1">
+          <button type="button" class="btn btn-primary" (click)="generateTable()" style="margin-top: 31px;">Calculate</button>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <th scope="row">#</th>
+              <th>Bet</th>
+              <th>Total</th>
+              <th>If won</th>
+              <th>Profit</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let wager of wagers" id="row{{wager.id}}" [ngClass]="[ (clicked == wager.id) ? 'marked' : 'unmarked' ]" (click)="color(wager.id)">
+                <th scope="row">{{ wager.id }}</th>
+                <td>{{ wager.bet }}</td>
+                <td>{{ wager.total }}</td>
+                <td>{{ wager.ifWon }}</td>
+                <td>{{ wager.profit }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
