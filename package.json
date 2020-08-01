@@ -4,10 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "engine": {
+    "node": "12.18.1",
+    "npm": "6.14.5"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +26,7 @@
     "@angular/router": "~9.1.11",
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
     "bootstrap": "^4.5.0",
+    "express": "^4.17.1",
     "ngx-mask": "^9.1.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
