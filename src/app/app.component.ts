@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterContentInit, AfterViewInit } from '@angular/core';
 import { element } from 'protractor';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 export interface IWager{
@@ -26,7 +27,7 @@ export class Wager{
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewInit{
-  title = 'bet-strategys';
+  title = 'bet-strategies';
 
   @ViewChild('initialBetElement') initialBetElement: ElementRef;
   @ViewChild('multiplierElement') multiplierElement: ElementRef;
@@ -35,6 +36,14 @@ export class AppComponent implements OnInit, AfterViewInit{
   initialBet: number = 0;
   wagers: Array<IWager>;
   clicked: number = 0;
+
+  constructor(
+    private modalService: NgbModal
+  ){}
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true, size: 'lg' });
+  }
 
   ngOnInit(): void {
     
@@ -65,14 +74,18 @@ export class AppComponent implements OnInit, AfterViewInit{
     let repeats = 0;
 
     // console.log(this.wagers);
-    if (this.multiplier >= 11) {
+    if (this.multiplier >= 12) {
       repeats = 200;
-    }else if (this.multiplier>=5 && this.multiplier<11) {
+    }else if (this.multiplier>=7 && this.multiplier<12) {
       repeats = 100;
+    }else if(this.multiplier>=4 && this.multiplier<7){
+      repeats = 40
+    }else if(this.multiplier>=3 && this.multiplier<4){
+      repeats = 30
     }else {
-      repeats = 30;
+      repeats = 20;
     }
-    if (this.multiplier>1) {
+    if (this.multiplier>1 && this.initialBet>0) {
       for (let i = 0; i < repeats; i++) {
         if (i==0) {
           // console.log("entra no primeiro if, i = " + i);
@@ -81,7 +94,7 @@ export class AppComponent implements OnInit, AfterViewInit{
               total: (this.initialBet), 
               bet: (this.initialBet), 
               ifWon: (this.initialBet*this.multiplier), 
-              profit: ((this.initialBet*this.multiplier)-this.initialBet)
+              profit: Number(((this.initialBet*this.multiplier)-this.initialBet).toFixed(2))
             });
         }else{
           const id = (i+1);

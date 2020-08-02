@@ -4,21 +4,112 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bet Strategys</title>
+  <script src="https://kit.fontawesome.com/d863926c78.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand mr-0" href="#">
+      <img src="../assets/profit-icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      BetStrategies
+    </a>
+    <div>
+      <button type="button" data-toggle="modal" class="btn btn-warning float-right" (click)="openVerticallyCentered(modalDonate)">Donate</button>
+      <button type="button" data-toggle="modal" class="btn btn-link float-right" (click)="openVerticallyCentered(modalHIW)">how it works?<img src="../assets/baseline_info_black_18dp.png" style="margin-bottom: 3px; margin-left: 2px;"></button>
+    </div>
+  </nav>
+
+
+  <!-- MODALS -->
+  <ng-template #modalHIW let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">How it works?</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <h3>Generating table</h3>
+      <p class="mt-1"><strong>1.</strong> You need to set your initial bet by placing it in the input for this.</p>
+      <img src="../assets/initial-bet-input.png" alt="initial bet input" width="384px">
+      <p class="mt-1"><strong>2.</strong> After, you need to set the multiplier of your bet.</p>
+      <img src="../assets/multiplier-input.png" alt="multiplier input" width="384px">
+      <p class="mt-1"><strong>3.</strong> Then, just click on button "Calculate" to generate the table with your bet.</p>
+
+      <h3>The table</h3>
+      <p><strong>1.</strong> The fist column of the table is about the order of the bet. The "#" column.</p>
+      <p><strong>2.</strong> The second column is about the bet that you will made. The "Bet" column.</p>
+      <p><strong>3.</strong> The third column is about the total amount you bet so far. The "Total" column.</p>
+      <p><strong>4.</strong> The fourth column is about the amount that you will get if you win in that round. The "If win" column.</p>
+      <p><strong>5.</strong> The fifth column is about the profit that you will get if you win in that round. The "Profit" column.</p>
+      
+      <h3>Betting</h3>
+      <p class="color-red">It's strongly recommended that you wait multiplier number rounds without hit your multiplier before start to bet.</p>
+      <p>You just need to bet as it is on the table. E. g. if you are betting at 5x, you will wait 5 rounds without hit the 5x. 
+        Then you will bet the fisrt bet, at the row 1 and the "bet" column. If you win, just stop and wait more 5 rounds without hit the 5x. 
+        Else, you will take the second bet at #2 and "Bet" column and so it goes on.</p>
+      <br>
+      <p>If after all this </p>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+  
+
+  <ng-template #modalDonate let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Donate</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <p>PayPal</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display: contents;">
+          <input type="hidden" name="cmd" value="_donations" />
+          <input type="hidden" name="business" value="B7R9YV27LRAFU" />
+          <input type="hidden" name="currency_code" value="USD" />
+          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+          <img alt="" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+        <img src="../assets/QRCode.png" alt="">
+      </div>
+      <p>Steam</p>
+      <a class="btn btn-secondary" href="https://steamcommunity.com/tradeoffer/new/?partner=260245919&token=5mYt71pI">Donate <img src="../assets/steam_icon.png" alt="" width="20px" style="filter: invert();"></a>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+
+  <!-- BODY -->
   <div class="header">
     <div class="container">
       <div class="row">
-        <div class="col-md-5">
-          <label for="initialBetElement">Initial bet</label>
-          <input type="text" name="initialBetElement" id="initialBetElement" class="form-control" mask="0*.00" #initialBetElement>
+        <div class="col-lg-11 col-md-9 col-sm-8">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="initialBetElement">Initial bet</label>
+              <input type="text" name="initialBetElement" id="initialBetElement" class="form-control" mask="0*.00" #initialBetElement>
+            </div>
+            <div class="col-md-6">
+              <label for="multiplierElement">Multiplier</label>
+              <input type="text" name="multiplierElement" id="multiplierElement" class="form-control" mask="0*" #multiplierElement>
+            </div>
+          </div>
         </div>
-        <div class="col-md-6">
-          <label for="multiplierElement">Multiplier</label>
-          <input type="text" name="multiplierElement" id="multiplierElement" class="form-control" mask="0*" #multiplierElement>
-        </div>
-        <div class="col-md-1">
-          <button type="button" class="btn btn-primary" (click)="generateTable()" style="margin-top: 31px;">Calculate</button>
+        <!-- <div class="col-md-5">
+          
+        </div> -->
+        <div class="col-lg-1 col-md-3 col-sm-4">
+          <button type="button" class="btn btn-primary float-right" (click)="generateTable()" style="margin-top: 31px;">Calculate</button>
         </div>
       </div>
       <div class="row" style="margin-top: 10px;">
