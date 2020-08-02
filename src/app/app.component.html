@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bet Strategys</title>
-  <script src="https://kit.fontawesome.com/d863926c78.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -51,7 +50,9 @@
         Then you will bet the fisrt bet, at the row 1 and the "bet" column. If you win, just stop and wait more 5 rounds without hit the 5x. 
         Else, you will take the second bet at #2 and "Bet" column and so it goes on.</p>
       <br>
-      <p>If after all this </p>
+      <p>If after all this you still don't understand how it works, you can watch these videos:</p>
+      <p>[PT-BR]: <a href="https://youtu.be/UnQEZaS9BYU">Como ganhar dinheiro com apostas de forma segura</a></p>
+      <p>[EN]: No video yet.</p>
 
     </div>
     <div class="modal-footer">
@@ -105,11 +106,8 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-md-5">
-          
-        </div> -->
         <div class="col-lg-1 col-md-3 col-sm-4">
-          <button type="button" class="btn btn-primary float-right" (click)="generateTable()" style="margin-top: 31px;">Calculate</button>
+          <button type="button" class="btn btn-primary float-right" (click)="generateTable()" style="margin-top: 31px;" #submitButton>Calculate</button>
         </div>
       </div>
       <div class="row" style="margin-top: 10px;">
@@ -119,7 +117,7 @@
               <th scope="row">#</th>
               <th>Bet</th>
               <th>Total</th>
-              <th>If won</th>
+              <th>If win</th>
               <th>Profit</th>
             </thead>
             <tbody>

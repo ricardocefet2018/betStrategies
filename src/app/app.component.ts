@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterContentInit, AfterViewInit } from '@angular/core';
 import { element } from 'protractor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Title } from '@angular/platform-browser';
 
 
 export interface IWager{
@@ -38,7 +39,8 @@ export class AppComponent implements OnInit, AfterViewInit{
   clicked: number = 0;
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private titleService: Title
   ){}
 
   openVerticallyCentered(content) {
@@ -46,7 +48,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    
+    this.titleService.setTitle('Bet strategies');
   }
 
   ngAfterViewInit(): void {
@@ -64,12 +66,13 @@ export class AppComponent implements OnInit, AfterViewInit{
 
     // this.initialBet*=100;
 
+    // console.log(this.buttonElement);
     // console.log("initial: " + this.initialBet);
     // console.log("mult: " + this.multiplier);
 
     this.wagers = new Array<IWager>();
-    console.log(this.initialBetElement);
-    console.log(this.multiplierElement);   
+    // console.log(this.initialBetElement);
+    // console.log(this.multiplierElement);   
     
     let repeats = 0;
 
@@ -110,7 +113,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   
           wager.bet = bet;
           wager.total = Number(total.toFixed(2));
-          console.log(wager.total);
+          // console.log(wager.total);
           wager.ifWon = ifWon;
           wager.profit = profit;
           this.wagers.push(wager);
